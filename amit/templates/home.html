@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<title></title>
+<head>
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static '/todo.css' %}">
+
+</head>
+
+<body>
+
+
+<form method="post" action="/">
+ {% csrf_token %}
+{{form.title}}
+<input class="add" type="submit" value="add" />
+</form>
+
+
+
+{% for task in task %} 
+    <a href= {% url 'update_task' task.id %} >update</a>
+     <a href="{% url 'delete' task.id %}">delete</a>
+     <a href="{% url 'task-details' task.id %}">apidetails</a>
+    <div>   <h4>{{task}}</h4>  </div>
+{% endfor %}
+
+
+</body>
+
+</html>
